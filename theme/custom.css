@@ -1,0 +1,221 @@
+/* RUSTAMAN Store: оформление магазина GameStores (Внешний вид → Продвинутая конфигурация → CSS).
+   Цвета как в игровом UI (/shop): тёмный металл, янтарь, полоса раста. */
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Roboto:wght@400;500;700&display=swap');
+
+:root[data-theme] {
+  --default-font-family: "Roboto";
+  --accent-color-800: #f0ad2e;
+  --accent-color-900: #d8921a;
+  --font-color-700: #fbf3e4;
+  --font-color-800: rgba(244, 232, 214, .8);
+  --font-color-900: #9a8f80;
+  --bg-color-700: #211c18;
+  --bg-color-800: #16120f;
+  --bg-color-900: #110e0c;
+  --product-items-trans-bg-color: rgba(12, 9, 7, .8);
+  --promocode-bg-color: #16120ff2;
+  --monitoring-joining-color: #f2b705;
+  --monitoring-queue-color: #d33a2c;
+
+  --rm-ink: #1b1206;
+  --rm-line: rgba(240, 173, 46, .18);
+  --rm-glass: rgba(20, 16, 13, .88);
+  --rm-gold: linear-gradient(180deg, #ffc95c, #ea9f1d);
+  --rm-gold-hover: linear-gradient(180deg, #ffd57a, #f2ad2e);
+  --rm-rasta: linear-gradient(90deg, #d33a2c 0 33.3%, #f2b705 33.3% 66.6%, #2fa04a 66.6%);
+  --rm-head: "Oswald", "Roboto", sans-serif;
+}
+
+body { background-color: #0e0b09; }
+body::-webkit-scrollbar-thumb { background: #3a2f25; }
+
+/* Логотип над шапкой */
+.bannerContainer { padding-top: 16px; padding-bottom: 6px; }
+.Banner-module__img {
+  max-height: 220px;
+  width: auto;
+  filter: drop-shadow(0 0 26px rgba(255, 122, 24, .35)) drop-shadow(0 10px 18px rgba(0, 0, 0, .6));
+  transition: transform .5s cubic-bezier(.2, .8, .2, 1);
+}
+.Banner-module__img:hover { transform: scale(1.04) rotate(-2deg); }
+
+/* Шапка */
+.Header-module__wrapper {
+  position: relative;
+  min-height: 56px;
+  background: var(--rm-glass);
+  border: 1px solid var(--rm-line);
+  border-radius: 8px;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, .45);
+  font-family: var(--rm-head);
+  letter-spacing: .06em;
+}
+.Header-module__wrapper::before {
+  content: "";
+  position: absolute;
+  left: 0; right: 0; top: -1px;
+  height: 3px;
+  border-radius: 8px 8px 0 0;
+  background: var(--rm-rasta);
+}
+.Header-module__logo { font-family: var(--rm-head); font-weight: 600; font-size: 20px; letter-spacing: .08em; color: var(--accent-color-800); }
+.HeaderNav-module__link { font-weight: 500; color: var(--font-color-800); }
+.PlayerMenu-module__loginLink,
+.PlayerMenu-module__profileLink {
+  padding: 9px 18px;
+  border-radius: 6px;
+  background: var(--rm-gold);
+  color: var(--rm-ink);
+  font-weight: 600;
+}
+.PlayerMenu-module__loginLink:hover, .PlayerMenu-module__loginLink:focus,
+.PlayerMenu-module__profileLink:hover, .PlayerMenu-module__profileLink:focus { background: var(--rm-gold-hover); color: var(--rm-ink); }
+
+/* Блоки: заголовок, тело, подвал */
+.Shop-module__wrapper, .Widgets-module__widgetWrapper { filter: drop-shadow(0 12px 26px rgba(0, 0, 0, .45)); }
+.boxHeader {
+  position: relative;
+  background: linear-gradient(180deg, #2a221b, #1e1914);
+  border: 1px solid var(--rm-line);
+  border-bottom: none;
+  border-radius: 8px 8px 0 0;
+  color: var(--font-color-700);
+  font-family: var(--rm-head);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+}
+.boxHeader::after {
+  content: "";
+  position: absolute;
+  left: 15px; bottom: 0;
+  width: 44px; height: 2px;
+  background: var(--rm-rasta);
+}
+.boxBody { background: var(--rm-glass); border: 1px solid var(--rm-line); border-top: none; }
+.boxBody:last-child { border-radius: 0 0 8px 8px; }
+.boxFooter { background: #1a1511; border: 1px solid var(--rm-line); border-top-color: rgba(255, 255, 255, .04); border-radius: 0 0 8px 8px; }
+
+/* Категории и поиск */
+.Categories-module__category {
+  background: #1d1814;
+  border: 1px solid var(--rm-line);
+  border-radius: 6px;
+  color: var(--font-color-800);
+  font-family: var(--rm-head);
+  text-transform: uppercase;
+  letter-spacing: .06em;
+}
+.Categories-module__category.Categories-module__active,
+.Categories-module__category:hover,
+.Categories-module__category.Categories-module__enableFocus:focus { background: var(--rm-gold); border-color: #ea9f1d; color: var(--rm-ink); }
+.Search-module__wrapper { background: #1d1814; border: 1px solid var(--rm-line); border-radius: 6px; }
+
+/* Карточки товаров */
+.Products-module__wrapper { gap: 14px; }
+.Product-module__wrapper {
+  padding: 0;
+  border-radius: 10px;
+  background: #15110e;
+  border: 1px solid rgba(255, 255, 255, .06);
+  transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+}
+.Product-module__wrapper:hover {
+  transform: translateY(-4px);
+  border-color: rgba(240, 173, 46, .7);
+  box-shadow: 0 14px 30px rgba(0, 0, 0, .5), 0 0 22px rgba(240, 173, 46, .25);
+}
+.Product-module__img { display: block; transition: transform .3s ease; }
+.Product-module__wrapper:hover .Product-module__img { transform: scale(1.04); }
+.Product-module__price {
+  z-index: 7;
+  padding: 4px 10px;
+  border-radius: 0 0 10px 0;
+  background: var(--rm-gold);
+  color: var(--rm-ink);
+  font-family: var(--rm-head);
+  font-weight: 600;
+  font-size: 15px;
+  letter-spacing: .03em;
+}
+.Product-module__price * { color: inherit; }
+.Product-module__name {
+  text-align: center;
+  color: var(--font-color-700);
+  background: linear-gradient(0deg, rgba(10, 8, 6, .96), rgba(10, 8, 6, .72));
+  font-family: var(--rm-head);
+  text-transform: uppercase;
+  letter-spacing: .06em;
+}
+
+/* Кнопки */
+.Button-module__btn { border-radius: 6px; font-family: var(--rm-head); text-transform: uppercase; letter-spacing: .06em; }
+.Button-module__btn.Button-module__accent { background: var(--rm-gold); border-color: #ea9f1d; color: var(--rm-ink); font-weight: 600; }
+.Button-module__btn.Button-module__accent:hover,
+.Button-module__btn.Button-module__accent:focus { background: var(--rm-gold-hover); border-color: #f2ad2e; color: var(--rm-ink); }
+.Button-module__btn.Button-module__gray { border: 1px solid var(--rm-line); }
+
+/* Тёмный текст на янтарном фоне */
+.Search-module__iconWrapper, .HistorySearch-module__iconWrapper, .BasketSearch-module__iconWrapper,
+.TotalSum-module__currency, .PlayerBalanceModal-module__currency, .Product-module__discount,
+.ProfileNav-module__logOut, .ProfileNav-module__logOut:hover,
+.LangSwitcher-module__btn:hover, .LangSwitcher-module__btn:focus,
+.PlayerBalance-module__btn:hover, .PlayerBalance-module__btn:focus,
+.ChatAuthModal-module__command:hover,
+.dropDownItem:hover, .dropDownItem:focus, .dropDownItem.active,
+.Selector-module__dropDownItem:hover, .Selector-module__dropDownItem:focus,
+.NavDropDown-module__link:hover, .NavDropDown-module__link:focus,
+.NavServerDropDown-module__server:hover, .NavServerDropDown-module__server:focus,
+.LangSwitcher-module__lang:hover, .LangSwitcher-module__lang:focus { color: var(--rm-ink); }
+
+/* Окно товара и прочие модалки */
+.customModalContent { border-radius: 10px; box-shadow: 0 24px 60px rgba(0, 0, 0, .7), 0 0 0 1px var(--rm-line); }
+/* Шаблон пишет «введите /bucket в чат», но coins выдаются командой сами.
+   Если появятся товары через корзину, эту замену убрать. */
+.productModalGiveText { font-size: 0; }
+.productModalGiveText::after {
+  content: "Coins придут на сервер автоматически в течение минуты";
+  font-size: 14px;
+  color: #9ecc5c;
+}
+
+/* Мониторинг */
+.MonitoringServer-module__name { font-family: var(--rm-head); letter-spacing: .04em; color: var(--font-color-700); }
+
+/* Свой виджет «Как получить coins» */
+.rm-steps { margin: 0; padding: 0; list-style: none; counter-reset: rm; }
+.rm-steps li { position: relative; padding: 0 0 12px 34px; line-height: 1.4; color: var(--font-color-800); }
+.rm-steps li::before {
+  counter-increment: rm;
+  content: counter(rm);
+  position: absolute; left: 0; top: -1px;
+  width: 24px; height: 24px;
+  border-radius: 50%;
+  background: var(--rm-gold);
+  color: var(--rm-ink);
+  font: 600 13px/24px var(--rm-head);
+  text-align: center;
+}
+.rm-steps b { color: var(--font-color-700); }
+.rm-steps code { padding: 1px 6px; border-radius: 4px; background: #2a221b; color: var(--accent-color-800); font-family: var(--rm-head); }
+.rm-discord {
+  display: block;
+  margin-top: 6px;
+  padding: 10px;
+  border-radius: 6px;
+  background: #5865f2;
+  color: #fff !important;
+  font: 500 15px var(--rm-head);
+  letter-spacing: .06em;
+  text-align: center;
+  text-transform: uppercase;
+  transition: background .15s ease;
+}
+.rm-discord:hover { background: #6d78f5; }
+
+/* Статические страницы */
+.Page-module__pageContent h2, .Page-module__pageContent h3 { font-family: var(--rm-head); letter-spacing: .04em; color: var(--font-color-700); margin: 14px 0 8px; }
+
+@media screen and (max-width: 600px) {
+  .Banner-module__img { max-height: 150px; }
+}
